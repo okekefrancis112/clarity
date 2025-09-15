@@ -1,3 +1,35 @@
+// {
+//   "compilerOptions": {
+//     "target": "ESNext",
+//     "useDefineForClassFields": true,
+//     "module": "ESNext",
+//     "lib": ["ESNext"],
+//     "skipLibCheck": true,
+
+//     "moduleResolution": "bundler",
+//       // "moduleResolution": "node", // Use "node" for Node.js compatibility
+//     "allowImportingTsExtensions": true,
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "noEmit": true,
+
+//     "strict": true,
+//     "noImplicitAny": true,
+//     "noUnusedLocals": true,
+//     "noUnusedParameters": true,
+//     "noFallthroughCasesInSwitch": true,
+//     "typeRoots": ["./node_modules/@types", "./node_modules/@hirosystems/clarinet-sdk/types"]
+//   },
+//   "include": [
+//     "node_modules/@hirosystems/clarinet-sdk/vitest-helpers/src",
+//     "tests/**/*.ts",
+//     "contracts/**/*.clar"
+// , "global.d.ts"    // "node_modules/@hirosystems/clarinet-sdk/vitest-helpers/src",
+// , "clarity-basics-i.test.ts"    // "tests/**/*.ts",
+//     // "tests", "tests/clarity-basics-i.test.ts", "tests/simple-storage1.test.ts",
+//   ]
+// }
+
 
 {
   "compilerOptions": {
@@ -6,9 +38,7 @@
     "module": "ESNext",
     "lib": ["ESNext"],
     "skipLibCheck": true,
-
     "moduleResolution": "bundler",
-      // "moduleResolution": "node", // Use "node" for Node.js compatibility
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -19,14 +49,19 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "typeRoots": ["./node_modules/@types", "./node_modules/@hirosystems/clarinet-sdk/types"]
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@hirosystems/clarinet-sdk/types"
+    ]
   },
   "include": [
     "node_modules/@hirosystems/clarinet-sdk/vitest-helpers/src",
-    "tests/**/*.ts",
-    "contracts/**/*.clar"
-    // "node_modules/@hirosystems/clarinet-sdk/vitest-helpers/src",
-    // "tests/**/*.ts",
-    // "tests", "tests/clarity-basics-i.test.ts", "tests/simple-storage1.test.ts",
+    "tests/**/*.ts"
+   ],
+  "exclude": [
+    "contracts/**/*.clar",
+    "**/*.toml",
+    "**/*.yaml",
+    "node_modules"
   ]
 }

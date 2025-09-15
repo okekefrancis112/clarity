@@ -1,9 +1,10 @@
 
-/// <reference types="vitest" />
+// /// <reference types="vitest" />
 
-// import { defineConfig } from "vite";
-import { defineConfig } from 'vitest/config';
-import { vitestSetupFilePath, getClarinetVitestsArgv } from "@hirosystems/clarinet-sdk/vitest";
+// // import { defineConfig } from "vite";
+// import { defineConfig } from 'vitest/config';
+// import { vitestSetupFilePath, getClarinetVitestsArgv } from "@hirosystems/clarinet-sdk/vitest";
+// import path from "node:path";
 
 /*
   In this file, Vitest is configured so that it works seamlessly with Clarinet and the Simnet.
@@ -20,30 +21,85 @@ import { vitestSetupFilePath, getClarinetVitestsArgv } from "@hirosystems/clarin
     - vitest run -- --coverage --costs          # collect coverage and cost reports
 */
 
+// export default defineConfig({
+//   test: {
+//     environment: "clarinet",
+//     include: ['tests/**/*.{test,spec}.ts'], // Include .test.ts files
+//     globals: true,
+//     pool: "forks",
+//     poolOptions: {
+//       threads: { singleThread: true },
+//       forks: { singleFork: true },
+//     },
+//     setupFiles: [
+//       vitestSetupFilePath,
+//       // custom setup files can be added here
+//     ],
+//     environmentOptions: {
+//       clarinet: {
+//         ...getClarinetVitestsArgv(),
+//         // add or override options
+//         // manifest: './Clarinet.toml', // Explicitly specify the manifest
+//         // manifestPath: path.resolve(__dirname, "settings", "Devnet.toml"),
+//         manifestPath: path.resolve(__dirname, "Clarinet.toml"), // ✅ use root manifest
+//         coverage: false,
+//         costs: false,
+//         debug: true // Enable debug logs for Clarinet environment
+//       },
+//     },
+//     // deps: {
+//     //   inline: ["vitest-environment-clarinet"], // force Vitest to process it
+//     // },
+//     // If you’re running Vitest normally
+//     deps: {
+//       optimizer: {
+//         ssr: {
+//           include: ["some-package"],
+//         },
+//       },
+//     },
+//     outputFile: 'test-output.json' // Log test output for debugging
+//   },
+// });
+
+
+/// <reference types="vitest" />
+
+import { defineConfig } from 'vitest/config';
+import { vitestSetupFilePath, getClarinetVitestsArgv } from "@hirosystems/clarinet-sdk/vitest";
+import path, { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export default defineConfig({
   test: {
-    environment: "clarinet", // use vitest-environment-clarinet
-    globals: true,
+    environment: "clarinet",
     include: ['tests/**/*.{test,spec}.ts'],
-    // include: ['tests/**/*.{test,spec}.ts'], // Include .test.ts files
+    globals: true,
     pool: "forks",
     poolOptions: {
       threads: { singleThread: true },
       forks: { singleFork: true },
     },
-    setupFiles: [
-      vitestSetupFilePath,
-      // custom setup files can be added here
-    ],
+    setupFiles: [vitestSetupFilePath],
     environmentOptions: {
       clarinet: {
         ...getClarinetVitestsArgv(),
-        // add or override options
-        manifest: './Clarinet.toml', // Explicitly specify the manifest
-        debug: true // Enable debug logs for Clarinet environment
+        manifestPath: path.resolve(__dirname, "Clarinet.toml"),
+        coverage: false,
+        costs: false,
+        debug: true
       },
     },
-    outputFile: 'test-output.json' // Log test output for debugging
+    // deps: {
+    //   optimizer: {
+    //     ssr: {
+    //       include: ["vitest-environment-clarinet"],
+    //     },
+    //   },
+    // },
+    outputFile: 'test-output.json'
   },
 });
-

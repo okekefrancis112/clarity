@@ -83,6 +83,7 @@ sbtc_balance = 1_000_000_000
 # btc_address: mjSrB3wS4xab3kYqFktwBzfTdPg367ZJ2d
 
 [devnet]
+persist = true
 disable_stacks_explorer = false
 disable_stacks_api = false
 # disable_postgres = false

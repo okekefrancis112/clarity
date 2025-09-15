@@ -6,11 +6,6 @@ telemetry = false
 cache_dir = './.cache'
 requirements = []
 
-[contracts.clarity-basics-i]
-path = 'contracts/clarity-basics-i.clar'
-clarity_version = 3
-epoch = '3.2'
-
 [contracts.simple-storage]
 path = 'contracts/simple-storage.clar'
 clarity_version = 3
@@ -28,3 +23,7 @@ callee_filter = false
 [repl.remote_data]
 enabled = false
 api_url = 'https://api.hiro.so'
+
+# 👇 Add this
+[networks.devnet]
+config_file = "settings/Devnet.toml"
