@@ -24,10 +24,13 @@
 )
 
 ;; Read-only Functions
+
+;; Get the stored string value
 (define-read-only (get-value)
   (ok (var-get stored-value))
 )
 
+;; Get the stored number value
 (define-read-only (get-number)
   (ok (var-get stored-number))
 )
